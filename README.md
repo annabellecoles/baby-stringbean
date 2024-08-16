@@ -31,7 +31,9 @@ Load Bella Vista with sample data:
 cd bellavista
 python bellavista.py ../sample_json/xenium_brain_rep3.json
 ```
-If you are using your own data, 
+
+Once successfully loaded, you should see the message `Data Loaded!` in the terminal and a napari window displaying the data similar to the image below\
+
 
 
 ## Documentation
