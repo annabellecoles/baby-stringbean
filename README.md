@@ -4,7 +4,7 @@ and custom (home-built) MERFISH datasets utilizing [napari](https://napari.org/)
 We developed Bella Vista to help the spatial transcriptomics community explore their data and create reproducible paper-ready figures.
 
 ## Installation
-It is recommended to create an [Anaconda](https://www.anaconda.com/) virtual environment to prevent conflicting package dependencies. 
+It is recommended to create an [Anaconda](https://www.anaconda.com/) virtual environment to prevent conflicting package dependencies. \
 Bella Vista requires python 3.9
 
 Create and activate a new virtual environment:
@@ -24,7 +24,7 @@ Install required packages:
 pip install -r requirements.txt
 ```
 Download sample data: [Xenium mouse brain dataset (replicate 3)](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)\
-Paste local path to sample data in `data_folder` property in `BellaVista/sample_json/xenium_brain_rep3.json`\
+Paste local path to sample data in the `data_folder` property in `BellaVista/sample_json/xenium_brain_rep3.json`\
 \
 Load Bella Vista with sample data:
 ```
@@ -32,7 +32,8 @@ cd bellavista
 python bellavista.py ../sample_json/xenium_brain_rep3.json
 ```
 
-Once successfully loaded, you should see the message `Data Loaded!` in the terminal and a napari window displaying the data similar to the image below\
+Once successfully loaded, you should see the message `Data Loaded!` in the terminal and a napari window displaying the data similar to the image below
+
 
 
 
