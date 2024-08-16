@@ -37,9 +37,6 @@ Once successfully loaded, you should see the message `Data Loaded!` in the termi
 
 
 
-## Documentation
-For more information on installation and usage, please see the [documentation](https://bellavista.readthedocs.io/).
-
 --- 
 ## Getting Started
 The *only* input file required to visualize data in Bella Vista is a JSON file containing dataset-specific parameters. 
@@ -153,8 +150,8 @@ Example JSON file for publicly-available [Xenium mouse brain dataset (replicate 
 
 ## MERSCOPE input files
 
-MORE INFO
+work in progress...
 
 ## MERFISH-MERlin input files
 
-MORE MORE INFO
+work in progress...
