@@ -22,15 +22,17 @@ cd BellaVista
 Install required packages:
 ```
 pip install -r requirements.txt
-pip install 'napari[all]==0.5.0'
 ```
-
-Call bellavista.py with a JSON parameters file:
-
+Download sample data: [Xenium mouse brain dataset (replicate 3)](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)\
+Paste local path to sample data in `data_folder` property in `BellaVista/sample_json/xenium_brain_rep3.json`\
+\
+Load Bella Vista with sample data:
 ```
 cd bellavista
-python bellavista.py my_data_param.json
+python bellavista.py ../sample_json/xenium_brain_rep3.json
 ```
+If you are using your own data, 
+
 
 ## Documentation
 For more information on installation and usage, please see the [documentation](https://bellavista.readthedocs.io/).
