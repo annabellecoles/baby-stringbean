@@ -32,10 +32,18 @@ cd bellavista
 python bellavista.py ../sample_json/xenium_brain_rep3.json
 ```
 
-Once successfully loaded, you should see the message `Data Loaded!` in the terminal and a napari window displaying the data similar to the image below
+Once successfully loaded, you should see the message `Data Loaded!` in the terminal\
+A napari window should appear displaying the data similar to the image below
+
+<p align="center">
+  <img src="./test/xenium_position0.png" width="800" />
+</p>
+
+Now, you can interactively move around the napari canvas to explore the data!\
+Try zooming in & out, toggling layers on & off to see different spatial patterns
 
 
-
+<img src="./xenium_position2_ALL.png" width="500" /> <img src="./xenium_position2_select.png" width="500" />
 
 --- 
 ## Getting Started
@@ -64,7 +72,22 @@ Input JSON file organization:
     }
   } 
 ```
+## Input properties for JSON file
 
+**system**: *string*
+- "Xenium", "MERSCOPE" or "MERlin"
+
+**plot_image**: *string*
+- Path to folder containing dataset outputs
+  
+**bella_vista_output_folder**: *string*
+- Path to save & load Bella Vista input files from
+  
+**create_bellavista_inputs**: *boolean*
+- Create required input files for Bella Vista from dataset outputs
+- Must be True when first loading data
+- Can be False in subsequent runs (since files have already been created)
+  
 ---
 ## Input parameters for JSON file
 
@@ -120,32 +143,29 @@ Input JSON file organization:
 Example JSON file for publicly-available [Xenium mouse brain dataset (replicate 3)](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)
 ```
     { 
-        "system": "xenium", 
-        "data_folder": "/Users/kosuri_lab/sample_datasets/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs",
-        "bella_vista_output_folder": "/Users/kosuri_lab/bellavista_outs/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs",
-        "create_bellavista_inputs": true,
+    "system": "xenium", 
+    "data_folder": "/Users/kosuri_lab/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs",
+    "bella_vista_output_folder": "/Users/kosuri_lab/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs/bellavista_outs",
+    "create_bellavista_inputs": true,
 
-        "parameters": {
-            "plot_image": true,
-            "plot_transcripts": true,
-            "plot_allgenes": true,
-            "plot_cell_seg": true,
-            "plot_nuclear_seg": true,
-            "transcript_point_size": 0.75,
-            "contrast_limits": [800,5000]
-        },
+    "parameters": {
+        "plot_image": true,
+        "plot_transcripts": true,
+        "plot_allgenes": true,
+        "transcript_point_size": 0.75,
+        "contrast_limits": [800,6000]
+    },
 
-        "input_files": {
-            "images": "morphology_mip.ome.tif",
-            "z_plane": 0,
-            "transcript_filename": "transcripts.parquet",
-            "cell_segmentation": "cell_boundaries.parquet",
-            "nuclear_segmentation": "nucleus_boundaries.parquet"
-        }
+    "input_files": {
+        "images": "morphology_mip.ome.tif",
+        "z_plane": 0,
+        "transcript_filename": "transcripts.parquet",
+        "cell_segmentation": "cell_boundaries.parquet",
+        "nuclear_segmentation": "nucleus_boundaries.parquet"
     }
+}
 ```
-
-
+This can also be found in the [sample_json](BellaVista/sample_json/xenium_brain_rep3.json) folder 
 
 
 ## MERSCOPE input files
