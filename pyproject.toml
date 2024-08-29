@@ -9,7 +9,7 @@ authors = [
     {name = "Annabelle Coles", email = "acoles@salk.edu"}]   
 description="Documentation for Bella Vista"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 2 - Pre-Alpha"]
 dependencies = [
