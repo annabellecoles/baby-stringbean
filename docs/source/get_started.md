@@ -82,7 +82,7 @@ Example JSON files can also be found in the [BellaVista/sample_json](https://git
 
 Download sample data: [Xenium mouse brain dataset (replicate 3)](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)
 - Copy and save contents below into a new JSON file called `xenium_sample.json`
-- Replace the paths in the `data_folder` and `bella_vista_output_folder` properties
+- Replace the paths in `data_folder` and `bella_vista_output_folder` parameters
 
 ```{eval-rst}
 .. code-block:: JSON
