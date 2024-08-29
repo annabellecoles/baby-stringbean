@@ -48,7 +48,7 @@ Example JSON files can also be found in the [BellaVista/sample_json](https://git
 : Create required visualization files for Bella Vista. Must be `true` when first loading data.\
  Can be `false` in subsequent runs (since files have already been created)
 
-## Visualization parameters for JSON file
+## Visualization parameters
 
 **plot_image**: *boolean, default=false*
 : Display image(s)
