@@ -5,7 +5,8 @@
 
 To visualize data in Bella Vista, you need a JSON configuration file containing dataset-specific parameters.
 
-JSON configuration file organization:
+## Configuration JSON file structure
+
 ```{eval-rst}
 .. code-block:: JSON
 
