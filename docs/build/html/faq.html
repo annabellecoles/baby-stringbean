@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-content_root="./"
+      x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }"
+      x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
+      class="scroll-smooth"
+      :class="{'dark': darkMode === 'dark' || (darkMode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)}"
+>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FAQ | Bella Vista</title>
+    <meta property="og:title" content="FAQ | Bella Vista" />
+    <meta name="twitter:title" content="FAQ | Bella Vista" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8d216cef" />
+      <link rel="stylesheet" type="text/css" href="_static/theme.css?v=ecdfb4fc" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=5a636568" />
+      <link rel="stylesheet" type="text/css" href="_static/awesome-sphinx-design.css?v=a54cf077" />
+        <link rel="search" title="Search" href="search.html" />
+        <link rel="index" title="Index" href="genindex.html" />
+          <link rel="next" title="API" href="api.html" />
+          <link rel="prev" title="Figure Guide" href="figure_guide.html" />
+
+    <script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+</head>
+<body x-data="{ showSidebar: false }" class="min-h-screen font-sans antialiased bg-background text-foreground" :class="{ 'overflow-hidden': showSidebar }">
+    <div x-cloak x-show="showSidebar" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" @click.self="showSidebar = false"></div><div id="page" class="relative flex flex-col min-h-screen"><a href="#content" class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100">
+      Skip to content
+    </a><header
+  class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+    <div class="hidden mr-4 md:flex">
+      <a href="index.html" class="flex items-center mr-6">
+          <img width="24" height="24" class="mr-2 hidden dark:block" src="_static/bellavista_logo_graphic.png" alt="Logo" />
+        <img width="24" height="24" class="mr-2 dark:hidden" src="_static/bellavista_logo_graphic.png" alt="Logo" /><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">Bella Vista</span>
+      </a><nav class="flex items-center space-x-6 text-sm font-medium">
+        <a href="installation.html" class="transition-colors hover:text-foreground/80 text-foreground/60">Installation</a>
+        <a href="get_started.html" class="transition-colors hover:text-foreground/80 text-foreground/60">Get Started</a>
+        <a href="tutorials.html" class="transition-colors hover:text-foreground/80 text-foreground/60">Tutorials</a>
+        <a href="figure_guide.html" class="transition-colors hover:text-foreground/80 text-foreground/60">Figures</a>
+        <a href="#" class="transition-colors hover:text-foreground/80 text-foreground">FAQ</a>
+        <a href="api.html" class="transition-colors hover:text-foreground/80 text-foreground/60">API</a>
+      </nav></div><button
+      class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden"
+      type="button" @click="showSidebar = true">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" aria-hidden="true"
+        fill="currentColor">
+        <path
+          d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z" />
+      </svg>
+      <span class="sr-only">Toggle navigation menu</span>
+    </button>
+    <div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+      <div class="flex-1 w-full md:w-auto md:flex-none"><form id="searchbox"
+      action="search.html"
+      method="get"
+      class="relative flex items-center group"
+      @keydown.k.window.meta="$refs.search.focus()">
+  <input x-ref="search"
+          name="q"
+          id="search-input"
+          type="search"
+          aria-label="Search the docs"
+          placeholder="Search ..."
+          class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" />
+  <kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+    <span class="text-xs">⌘</span>
+    K
+  </kbd>
+</form>
+      </div>
+      <nav class="flex items-center space-x-1">
+        <a href="https://github.com/pkosurilab/BellaVista" title="Visit GitHub" rel="noopener nofollow">
+          <div
+            class="inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md disabled:opacity-50 disabled:pointer-events-none hover:bg-accent hover:text-accent-foreground h-9 w-9">
+            <svg fill="currentColor" height="26px" style="margin-top:-2px;display:inline" viewBox="0 0 45 44" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M22.477.927C10.485.927.76 10.65.76 22.647c0 9.596 6.223 17.736 14.853 20.608 1.087.2 1.483-.47 1.483-1.047 0-.516-.019-1.881-.03-3.693-6.04 1.312-7.315-2.912-7.315-2.912-.988-2.51-2.412-3.178-2.412-3.178-1.972-1.346.149-1.32.149-1.32 2.18.154 3.327 2.24 3.327 2.24 1.937 3.318 5.084 2.36 6.321 1.803.197-1.403.759-2.36 1.379-2.903-4.823-.548-9.894-2.412-9.894-10.734 0-2.37.847-4.31 2.236-5.828-.224-.55-.969-2.759.214-5.748 0 0 1.822-.584 5.972 2.226 1.732-.482 3.59-.722 5.437-.732 1.845.01 3.703.25 5.437.732 4.147-2.81 5.967-2.226 5.967-2.226 1.185 2.99.44 5.198.217 5.748 1.392 1.517 2.232 3.457 2.232 5.828 0 8.344-5.078 10.18-9.916 10.717.779.67 1.474 1.996 1.474 4.021 0 2.904-.027 5.247-.027 5.96 0 .58.392 1.256 1.493 1.044C37.981 40.375 44.2 32.24 44.2 22.647c0-11.996-9.726-21.72-21.722-21.72" fill="currentColor" fill-rule="evenodd"></path></svg>
+          </div>
+        </a>
+        
+        <button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'"
+          class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9"
+          type="button"
+          aria-label="Color theme switcher">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+            class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0">
+            <path
+              d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+            class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100">
+            <path
+              d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z" />
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    <div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside id="left-sidebar"
+  class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky"
+  :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }">
+
+    <a href="index.html" class="!justify-start text-sm md:!hidden bg-background">
+        <img width="16" height="16" class="mr-2 hidden dark:block" src="_static/bellavista_logo_graphic.png" alt="Logo" />
+        <img width="16" height="16" class="mr-2 dark:hidden" src="_static/bellavista_logo_graphic.png" alt="Logo" /><span class="font-bold text-clip whitespace-nowrap">Bella Vista</span>
+    </a>
+
+    <div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+      <div class="overflow-y-auto h-full w-full relative pr-6"><nav class="flex md:hidden flex-col font-medium mt-4">
+  <a href="installation.html">Installation</a>
+  <a href="get_started.html">Get Started</a>
+  <a href="tutorials.html">Tutorials</a>
+  <a href="figure_guide.html">Figures</a>
+  <a href="#">FAQ</a>
+  <a href="api.html">API</a>
+</nav><nav class="table w-full min-w-full my-6 lg:my-8">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-terminal" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z"></path></svg> Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-rocket" viewBox="0 0 16 16" aria-hidden="true"><path d="M14.064 0h.186C15.216 0 16 .784 16 1.75v.186a8.752 8.752 0 0 1-2.564 6.186l-.458.459c-.314.314-.641.616-.979.904v3.207c0 .608-.315 1.172-.833 1.49l-2.774 1.707a.749.749 0 0 1-1.11-.418l-.954-3.102a1.214 1.214 0 0 1-.145-.125L3.754 9.816a1.218 1.218 0 0 1-.124-.145L.528 8.717a.749.749 0 0 1-.418-1.11l1.71-2.774A1.748 1.748 0 0 1 3.31 4h3.204c.288-.338.59-.665.904-.979l.459-.458A8.749 8.749 0 0 1 14.064 0ZM8.938 3.623h-.002l-.458.458c-.76.76-1.437 1.598-2.02 2.5l-1.5 2.317 2.143 2.143 2.317-1.5c.902-.583 1.74-1.26 2.499-2.02l.459-.458a7.25 7.25 0 0 0 2.123-5.127V1.75a.25.25 0 0 0-.25-.25h-.186a7.249 7.249 0 0 0-5.125 2.123ZM3.56 14.56c-.732.732-2.334 1.045-3.005 1.148a.234.234 0 0 1-.201-.064.234.234 0 0 1-.064-.201c.103-.671.416-2.273 1.15-3.003a1.502 1.502 0 1 1 2.12 2.12Zm6.94-3.935c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 0 0 .119-.213ZM3.678 8.116 5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 0 0-.213.119l-1.2 1.95ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg> Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-workflow" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h3.5C6.216 0 7 .784 7 1.75v3.5A1.75 1.75 0 0 1 5.25 7H4v4a1 1 0 0 0 1 1h4v-1.25C9 9.784 9.784 9 10.75 9h3.5c.966 0 1.75.784 1.75 1.75v3.5A1.75 1.75 0 0 1 14.25 16h-3.5A1.75 1.75 0 0 1 9 14.25v-.75H5A2.5 2.5 0 0 1 2.5 11V7h-.75A1.75 1.75 0 0 1 0 5.25Zm1.75-.25a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25v-3.5a.25.25 0 0 0-.25-.25Zm9 9a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25v-3.5a.25.25 0 0 0-.25-.25Z"></path></svg> Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bellavista_tutorials/10x_xenium.html">10x Genomics Xenium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bellavista_tutorials/vizgen_merscope.html">Vizgen MERSCOPE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bellavista_tutorials/merfish_merlin.html">MERFISH - MERlin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="figure_guide.html"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-pencil" viewBox="0 0 16 16" aria-hidden="true"><path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"></path></svg> Figure Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-question" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg> FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-code-square" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25Zm7.47 3.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L10.69 8 9.22 6.53a.75.75 0 0 1 0-1.06ZM6.78 6.53 5.31 8l1.47 1.47a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path></svg> API</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+    <button type="button" @click="showSidebar = false"
+      class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+        stroke="none" class="h-4 w-4">
+        <path
+          d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z" />
+      </svg>
+    </button>
+  </aside>
+        <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs"
+     class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+  <a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground"
+     href="index.html">
+    <span class="hidden md:inline">Bella Vista</span>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         height="18"
+         width="18"
+         viewBox="0 96 960 960"
+         aria-label="Home"
+         fill="currentColor"
+         stroke="none"
+         class="md:hidden">
+      <path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z" />
+    </svg>
+  </a>
+  
+<div class="mr-1">/</div><span aria-current="page"
+        class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-question" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg> FAQ</span>
+</nav>
+
+    <div id="content" role="main">
+      <div class="toctree-wrapper compound">
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="faq">
+<h1><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-question" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg> FAQ</h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This project &amp; website is under active development.</p>
+</div>
+<!-- Here are some FAQ about Bella Vista & napari: 
+
+##### I can't see my image
+
+If your image has loaded, but appears oversaturated (white), you may need to change the contrast limits of the image.  -->
+</section>
+
+    </div></div>
+        </main>
+      </div>
+    </div><footer class="py-6 border-t border-border md:py-0">
+    <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+      <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+        <p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© Kosuri Lab. 2024&nbsp;Built with <a class="font-medium underline underline-offset-4"
+    href="https://www.sphinx-doc.org"
+    rel="noreferrer">Sphinx 7.3.7</a></p>
+</div>
+</div>
+</footer>
+  </div>
+  
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script defer="defer" src="_static/theme.js?v=e82a16a3"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+  
+</body>
+</html>
