@@ -5,7 +5,7 @@
 
 To visualize data in Bella Vista, you need a JSON configuration file containing dataset-specific parameters.
 
-Input JSON file organization:
+JSON configuration file organization:
 ```{eval-rst}
 .. code-block:: JSON
 
@@ -28,32 +28,48 @@ Input JSON file organization:
     }
   } 
 ```
-Technology-specific input files and example JSON files are found in the [Xenium](bellavista_tutorials/10x_xenium), [MERSCOPE](bellavista_tutorials/vizgen_merscope), [MERlin](bellavista_tutorials/merfish_merlin) tutorials
+
+Each technoloy has technology-specific input file requirements. Technology-specific input file parameters and example JSON files can be found in the [Xenium](bellavista_tutorials/10x_xenium), [MERSCOPE](bellavista_tutorials/vizgen_merscope), [MERlin](bellavista_tutorials/merfish_merlin) tutorials
 
 Example JSON files can also be found in the [BellaVista/sample_json](https://github.com/pkosurilab/BellaVista) repository
 
+## General parameters
+
+**system**: *string*
+: Allowed values: `"Xenium"`, `"MERSCOPE"`, or `"MERlin"`. Specifies the spatial transcriptomic technology. The input is not case-sensitive, so values "xenium", "Xenium", and "XENIUM" are treated equivalently
+
+**data_folder**: *string*
+: Path to folder containing dataset output files
+  
+**bella_vista_output_folder**: *string*
+: Path to save & load Bella Vista visualization files
+  
+**create_bellavista_inputs**: *boolean, default=true*
+: Create required visualization files for Bella Vista. Must be `true` when first loading data.\
+ Can be `false` in subsequent runs (since files have already been created)
+
 ## Visualization parameters for JSON file
 
-**plot_image**: *boolean, default=False*
-: Display image(s). Default value is False
+**plot_image**: *boolean, default=false*
+: Display image(s)
 
-**plot_transcripts**: *boolean, default=False*
+**plot_transcripts**: *boolean, default=false*
 : Plot gene transcript spatial coordinates
 
-**plot_allgenes**: *boolean, default=True*
-: Plot transcripts for all gene IDs. If False, only gene IDs in `selected_genes` will be plotted
+**plot_allgenes**: *boolean, default=true*
+: Plot transcripts for all gene IDs. If false, only gene IDs in `selected_genes` will be plotted
 
 **selected_genes**: *1D array of strings, default=None*
-: Plot transcripts only for specified gene IDs
+: Only plot transcripts for gene IDs specified in list. If None, all genes will be plotted by default
 
-**plot_cell_seg**: *boolean, default=False*
+**plot_cell_seg**: *boolean, default=false*
 : Plot cell segmentation
 
-**plot_nuclear_seg**: *boolean, default=False*
+**plot_nuclear_seg**: *boolean, default=false*
 : Plot nuclear segmentation
 
 **transcript_point_size**: *float, default=1.0*
-: Point size for plotting transcript coordinates
+: Point size for individual transcript coordinates
 
 **contrast_limits**: *tuple array of integers, default=None*
 : Values in the range [0, 65535]. Contrast limits for displayed image(s)
