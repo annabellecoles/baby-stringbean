@@ -7,9 +7,30 @@ This in-depth tutorial is for visualizing datasets from custom (home-built) MERF
 ### MERlin pipeline outputs
 
 Standard MERlin output file organization:
+```{eval-rst}
+.. code-block:: 
 
-
-INSERT TREE THINGY HERE!
+  %ANALYSIS_HOME%
+  ├── ...
+  ├── ExportBarcodes
+  │   └── barcodes.csv
+  ├── ...
+  ├── FiducialCorrelationWarp
+  │   └── images
+  │       └── aligned_images0.tif
+          └── ...
+          └── aligned_images406.tif
+  ├── ...
+  ├── RefineCellDatabases
+  │   └── features
+  │       └── feature_data_0.hdf5
+          └── ...
+          └── feature_data_406.tif
+  ├── ...
+  ├── codebook.csv
+  ├── microscope_parameters.json
+  └── positions.csv
+```
 
 From these outputs, it is possible to visualize tissue images, spatial transcript locations, and cell/nuclear segmentation boundaries.
 
