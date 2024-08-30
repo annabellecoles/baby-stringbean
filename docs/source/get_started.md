@@ -135,7 +135,8 @@ Try zooming in & out, toggling layers on & off to see different spatial patterns
 
 <img src="https://github.com/pkosurilab/BellaVista/blob/pypi-documentation/images/xenium_brain_position1.png?raw=true" alt="Zoom out of napari with selected genes visible" width="600" />
 
-The example JSON file can also be found on the Bella Vista GitHub repository: [https://github.com/pkosurilab/BellaVista/tree/main/sample_json/xenium_sample.json](https://github.com/pkosurilab/BellaVista/tree/main/sample_json/xenium_sample.json)
+<!-- 
+The example JSON file can also be found on the Bella Vista GitHub repository: [https://github.com/pkosurilab/BellaVista/tree/main/sample_json/xenium_sample.json](https://github.com/pkosurilab/BellaVista/tree/main/sample_json/xenium_sample.json) -->
 
 
 <div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
