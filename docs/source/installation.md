@@ -4,7 +4,9 @@
 
 # {octicon}`terminal` Installation
 
-The following instructions require that you have [Anaconda](https://www.anaconda.com/) installed. It is recommended to create an Anaconda virtual environment to prevent conflicting package dependencies. The package can be installed from PyPI via [pip](https://pypi.org/project/pip/) (recommended) or from the [GitHub repository](https://github.com/pkosurilab/BellaVista). Bella Vista requires python 3.9 or above.
+<!-- The following instructions require that you have [Anaconda](https://www.anaconda.com/) installed. It is recommended to create an Anaconda virtual environment to prevent conflicting package dependencies. The package can be installed from PyPI via [pip](https://pypi.org/project/pip/) (recommended) or from the [GitHub repository](https://github.com/pkosurilab/BellaVista). Bella Vista requires python 3.9 or above. -->
+
+The following instructions require that you have [Anaconda](https://www.anaconda.com/) installed. It is recommended to create an Anaconda virtual environment to prevent conflicting package dependencies. The package can be installed from the [GitHub repository](https://github.com/pkosurilab/BellaVista). Bella Vista requires python 3.9 or above.
 
 **Create and activate a new virtual environment:**
 
@@ -16,7 +18,7 @@ The following instructions require that you have [Anaconda](https://www.anaconda
 ```
 
 
-**Installation via pip:**
+<!-- **Installation via pip:**
 
 ```{eval-rst}
 .. code-block:: python
@@ -25,6 +27,15 @@ The following instructions require that you have [Anaconda](https://www.anaconda
 ```
 
 **Or installation from GitHub repository:**
+
+```{eval-rst}
+.. code-block:: python
+
+    git clone https://github.com/pkosurilab/BellaVista
+    pip install -e BellaVista
+``` -->
+
+**Installation from GitHub repository:**
 
 ```{eval-rst}
 .. code-block:: python
