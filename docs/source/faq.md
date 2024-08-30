@@ -6,7 +6,7 @@
 ```{eval-rst}
 .. note::
 
-   This project & website is under active development.
+   TODO!!!!
 ```
 
 <!-- Here are some FAQ about Bella Vista & napari: 

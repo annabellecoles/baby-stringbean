@@ -3,6 +3,16 @@
 ```
 # {octicon}`pencil` Figure Guide
 
+```{eval-rst}
+.. note::
+
+   WORK IN PROGRESS...
+   CHANGE SCREENSHOTS
+   SIMPLIFY STUFF
+   UPLOAD PICKLES TO DROPBOX???!!!
+
+```
+
 Bella Vista can be used to create poster, presentation, and paper-ready figures highlighting spatial discoveries in your data. Figures can also be reproduced between different sessions, different computers, and different users.
 
 **Saving screenshots:**

@@ -1,12 +1,20 @@
 MERFISH - MERlin
 ================
 
+```{eval-rst}
+.. note::
+
+   WORK IN PROGRESS...
+   FIX EXAMPLE JSON STUFF
+```
+
+
 This in-depth tutorial is for visualizing datasets from custom (home-built) MERFISH setups processed via the [MERlin](https://github.com/emanuega/MERlin) pipeline. Our aim was to make the Bella Vista package as lightweight as possible and make it easy for users to customize the code for custom setups, analyses, and needs. Check out the [napari website](https://napari.org/) for further documentation and features you can implement!
 
 
 ### MERlin pipeline outputs
 
-Standard MERlin output file organization:
+Standard MERlin outputs folder organization:
 ```{eval-rst}
 .. code-block:: 
 
