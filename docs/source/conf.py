@@ -77,3 +77,5 @@ myst_enable_extensions = [
 
 html_css_files = ["custom.css"]
 smartquotes = False
+
+html_favicon = "favicon.ico"
