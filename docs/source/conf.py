@@ -35,8 +35,8 @@ html_theme = 'sphinxawesome_theme'
 html_static_path = ['_static']
 
 theme_options = ThemeOptions(
-    logo_light="_static/bellavista_logo_graphic.png",
-    logo_dark="_static/bellavista_logo_graphic.png",
+    logo_light="_static/bellavista_logo_favicon.png",
+    logo_dark="_static/bellavista_logo_favicon.png",
     show_scrolltop=True,
     show_breadcrumbs=True,
     awesome_external_links=True,
@@ -78,4 +78,4 @@ myst_enable_extensions = [
 html_css_files = ["custom.css"]
 smartquotes = False
 
-html_favicon = "favicon.ico"
+html_favicon = "_static/bellavista_favicon.ico"
