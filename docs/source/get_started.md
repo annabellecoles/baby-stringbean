@@ -49,6 +49,7 @@ Example JSON files can also be found in the [BellaVista/sample_json](https://git
 : Create required visualization files for Bella Vista. Must be `true` when first loading data.\
  Can be `false` in subsequent runs (since files have already been created)
 
+
 ## Visualization parameters
 
 **plot_image**: *boolean, default=false*
@@ -78,6 +79,9 @@ Example JSON files can also be found in the [BellaVista/sample_json](https://git
 **rotate_angle**: *integer, default=None*
 : Value in the range [0, 360]. Angle in degrees by which to rotate the data
 
+<br><br>
+<hr class="custom-line">
+
 ## Getting Started (with sample data)
 
 Download sample data: [Xenium mouse brain dataset (replicate 3)](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)
@@ -93,7 +97,7 @@ Download sample data: [Xenium mouse brain dataset (replicate 3)](https://www.10x
       "bella_vista_output_folder": "/path/to/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs/bellavista_outs",
       "create_bellavista_inputs": true,
 
-      "parameters": {
+      "visualization_parameters": {
           "plot_image": true,
           "plot_transcripts": true,
           "plot_allgenes": true,
