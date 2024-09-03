@@ -1,0 +1,25 @@
+{ 
+    "system": "merscope", 
+    "data_folder": "/path/to/Vizgen_BrainReceptorShowcase_Slice1_Replicate1",
+    "bella_vista_output_folder": "/path/to/Vizgen_BrainReceptorShowcase_Slice1_Replicate1/bellavista_outs",
+    "create_bellavista_inputs": true,
+
+    "visualization_parameters": { 
+        "plot_image": true,
+        "plot_transcripts": true,
+        "plot_allgenes": false,
+        "selected_genes": ["Fgfr2","Tmem108","Glp2r","Slc47a1","Tacr1","Th","Ntsr1",
+                            "Sstr3","S1pr3","Sstr1","Ptgfr","Qrfpr","Gpr101","Drd5","Chat"],
+        "plot_cell_seg": true,
+        "transcript_point_size": 0.75,
+        "contrast_limits": [0, 26000]
+    },
+    
+    "input_files": {
+        "um_to_px_transform": "datasets_mouse_brain_map_BrainReceptorShowcase_Slice1_Replicate1_images_micron_to_mosaic_pixel_transform.csv",
+        "images":  "mosaic_DAPI_z3.tif",
+        "z_plane": 3,
+        "transcript_filename": "datasets_mouse_brain_map_BrainReceptorShowcase_Slice1_Replicate1_detected_transcripts_S1R1.csv",
+        "cell_segmentation": "cell_boundaries"
+    }
+}

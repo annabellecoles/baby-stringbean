@@ -80,10 +80,14 @@ Transcript locations and cell/nuclear segmentations exported by MERlin can be pr
     All input paths *must* be relative paths to :samp:`data_folder`
 ```
 
+<br><br>
+<hr class="custom-line">
 
-### Example JSONs
+### Sample dataset & JSON
 
-##### Transcripts only
+
+
+<!-- ##### Transcripts only
 ```{eval-rst}
 .. code-block:: JSON
 
@@ -189,7 +193,7 @@ Transcript locations and cell/nuclear segmentations exported by MERlin can be pr
         "cell_segmentation": "RefineCellDatabases/features"
     }
   } 
-```
+``` -->
 
 <div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
     <div class="mr-auto">

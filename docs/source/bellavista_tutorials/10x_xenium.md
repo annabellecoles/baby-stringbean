@@ -24,16 +24,14 @@ In order to visualize your Xenium dataset in Bella Vista, you will need to creat
         },
 
         "input_files": {
+            "transcript_filename": "transcripts.parquet",
             "images": "morphology.ome.tif",
             "z_plane": 0,
-            "transcript_filename": "transcripts.parquet",
             "cell_segmentation": "cell_boundaries.parquet",
             "nuclear_segmentation": "nucleus_boundaries.parquet"
         }
     }
 ```
-
-
 
 ## Input file parameters (Xenium)
 

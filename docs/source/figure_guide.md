@@ -10,11 +10,18 @@ Bella Vista can be used to create poster, presentation, and paper-ready figures 
 Below is a step-by-step guide to reproducing the following screenshots from a sample Xenium dataset:
 
 <div style="position: relative; width: 100%; display: flex; justify-content: space-between; align-items: flex-end;">
-  <img src="_static/sample_screenshots/xenium_brain_position_0.png" alt="zoom out screenshot" style="width: 45%;">
-  <img src="_static/sample_screenshots/xenium_brain_position_1.png" alt="zoom in screenshot" style="width: 45%">
+  <img src="_static/sample_figure_screenshots/xenium_brain_position_0.png" alt="zoom out screenshot" style="width: 45%;">
+  <img src="_static/sample_figure_screenshots/xenium_brain_position_1.png" alt="zoom in screenshot" style="width: 45%">
 </div>
 
-The sample dataset can be downloaded here: [Xenium mouse brain dataset (replicate 3)](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)
+The sample dataset can be downloaded here: [Xenium mouse brain dataset (replicate 3)](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)\
+To download the dataset, 10x Genomics may ask you to fill out a questionnaire.
+
+<img src="https://github.com/pkosurilab/BellaVista/blob/main/images/xenium_testdata_location.png?raw=true" alt="Xenium sample data website location" width="600" />
+
+[https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)
+<br/><br/>
+
 
 The configuration files required to reproduce viewer configuration can be found in the dropbox:\
  https://www.dropbox.com/scl/fo/5ae35p7nbkct0e0mi92vz/AD38rhAb4M6L36putA4qREU?rlkey=hjnf94fomm5k2rfyzyi7b58u3&st=1tylmuj6&dl=0
@@ -22,7 +29,7 @@ The configuration files required to reproduce viewer configuration can be found 
  ```{eval-rst}
 .. note::
 
-    When taking screenshots on different computers, the content visible may be different due to different display sizes -->
+    When taking screenshots on different computers, the content visible may be different due to different display sizes
 ```
 
 ### Load Bella Vista
@@ -74,7 +81,7 @@ Once loaded, your napari window should look similar to this. The gene colors dis
 
 <p align="center">
   <picture>
-    <img alt="zoom out screenshot" src="_static/sample_screenshots/xenium_brain_initial.png" style="width: 80%">
+    <img alt="zoom out screenshot" src="_static/sample_figure_screenshots/xenium_brain_initial.png" style="width: 80%">
   </picture>
 </p>
 <p align="center">
@@ -158,7 +165,7 @@ The napari console can be found in the bottom left of the gui:
 
 <p align="center">
   <picture>
-    <img alt="zoom out screenshot" src="_static/sample_screenshots/xenium_brain_position_0.png" style="width: 80%">
+    <img alt="zoom out screenshot" src="_static/sample_figure_screenshots/xenium_brain_position_0.png" style="width: 80%">
   </picture>
 </p>
 <p align="center">
@@ -175,7 +182,7 @@ The napari console can be found in the bottom left of the gui:
 
 <p align="center">
   <picture>
-    <img alt="zoom out screenshot" src="_static/sample_screenshots/xenium_brain_position_1.png" style="width: 80%">
+    <img alt="zoom out screenshot" src="_static/sample_figure_screenshots/xenium_brain_position_1.png" style="width: 80%">
   </picture>
 </p>
 <p align="center">
@@ -194,7 +201,7 @@ The napari console can be found in the bottom left of the gui:
 
 <p align="center">
   <picture>
-    <img alt="zoom out screenshot" src="_static/sample_screenshots/xenium_brain_position_1_DAPI.png" style="width: 80%">
+    <img alt="zoom out screenshot" src="_static/sample_figure_screenshots/xenium_brain_position_1_DAPI.png" style="width: 80%">
   </picture>
 </p>
 <p align="center">
@@ -211,7 +218,7 @@ The napari console can be found in the bottom left of the gui:
 
 <p align="center">
   <picture>
-    <img alt="zoom out screenshot" src="_static/sample_screenshots/xenium_brain_position_2_DAPI.png" style="width: 80%">
+    <img alt="zoom out screenshot" src="_static/sample_figure_screenshots/xenium_brain_position_2_DAPI.png" style="width: 80%">
   </picture>
 </p>
 <p align="center">
@@ -227,22 +234,25 @@ The napari console can be found in the bottom left of the gui:
 
 <p align="center">
   <picture>
-    <img alt="zoom out screenshot" src="_static/sample_screenshots/xenium_brain_position_2.png" style="width: 80%">
+    <img alt="zoom out screenshot" src="_static/sample_figure_screenshots/xenium_brain_position_2.png" style="width: 80%">
   </picture>
 </p>
 <p align="center">
 
-## Useful commands
+<br><br>
+<hr class="custom-line">
 
+## Creating your own figures!
+
+### Useful commands
+
+Screenshot current canvas:
 ```{eval-rst}
 .. code-block:: python
 
-    # take screenshot of current canvas
-    viewer.screenshot("napari_canvas.png")
+    # save screenshot to folder
+    viewer.screenshot("/path/to/folder/napari_canvas.png")
 ```
-
-<!-- 
-**Creating reproducible figures:**
 
 Save current camera position & zoom:
 ```{eval-rst}
@@ -250,83 +260,54 @@ Save current camera position & zoom:
 
     import pickle
 
-    # take screenshot of current canvas
-    viewer.screenshot("/screenshots/position_1.tif", canvas_only=True)
-
     # save current camera state
     position_1 = {'center': viewer.camera.center, 'zoom': viewer.camera.zoom}
-    with open('/screenshots/position_1.pkl', 'wb') as f:
+    with open('/path/to/folder/position_1.pkl', 'wb') as f:
         pickle.dump(position_1, f)
 ```
 Return to saved position:
-
 ```{eval-rst}
 .. code-block:: python
+
+    import pickle 
+
+    # load previous camera state
+    with open('/path/to/folder/position_1.pkl', 'rb') as f:
+        position_1 = pickle.load(f)
 
     # return to camera state from previous screenshot
     viewer.camera.center, viewer.camera.zoom = position_1['center'], position_1['zoom']
 ```
 
-**Reproducing figures in different sessions/computers/users:**
-
-Session 1:
+Save transcript colors for each gene:
 ```{eval-rst}
 .. code-block:: python
 
-    import pickle
+    import pickle 
 
-    #take screenshot of current canvas
-    viewer.screenshot("/screenshots/position_1.tif", canvas_only=True)
-
-    # save current camera state
-    position_1 = {'center': viewer.camera.center, 'zoom': viewer.camera.zoom}
-    with open('/screenshots/position_1.pkl', 'wb') as f:
-        pickle.dump(position_1, f)
-
-    # save current point color for each gene layer
+    # store current transcript colors in a dictionary
     gene_colors_dict = {}
     gene_layers = [layer for layer in viewer.layers if isinstance(layer, napari.layers.Points)]
     for gene_layer in gene_layers:
         gene_colors_dict[gene_layer.name] = gene_layer.face_color[0]
 
-    with open('/screenshots/gene_colors_dict.pkl', 'wb') as f:
+    # save dictionary
+    with open('/path/to/folder/gene_colors_dict.pkl', 'wb') as f:
         pickle.dump(gene_colors_dict, f)
 ```
 
-Session 2:
-
+Load saved transcript colors:
 ```{eval-rst}
 .. code-block:: python
 
     import pickle
 
-    # assign gene transcript point colors from session 1
-    with open('/screenshots/gene_colors_dict.pkl', 'rb') as f:
+    # load saved transcript colors
+    with open('/path/to/folder/gene_colors_dict.pkl', 'rb') as f:
         gene_colors_dict = pickle.load(f)
+
+    # assign gene transcript point colors
     for gene in gene_colors_dict.keys():
-                    viewer.layers[gene].face_color = gene_colors_dict[gene]
-
-    # reproduce screenshot from session 1
-    with open('/screenshots/position_1.pkl', 'rb') as f:
-                    position_1 = pickle.load(f)
-    # return to camera state from previous screenshot
-    viewer.camera.center, viewer.camera.zoom = position_1['center'], position_1['zoom']
-
-    # take screenshot of current canvas -- this should be the same image from session 1
-    viewer.screenshot("/screenshots/position_1_session2.tif")
+        viewer.layers[gene].face_color = gene_colors_dict[gene]
 ```
-
-<!-- TODO CHANGE FIGURE IMAGE!! -->
-<!-- Example from [Xenium mouse brain dataset (replicate 3)](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard):
-
-:::{image} _static/reproducibility.png
-:alt: Figure reproducibility 
-:align: center
-:width: 800px
-:::
-
-
-JSON & pickle files to reproduce the above screenshot can be found [here](https://github.com/pkosurilab/BellaVista)
-
--->
 
