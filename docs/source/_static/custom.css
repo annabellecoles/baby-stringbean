@@ -2,3 +2,9 @@
 .sd-octicon {
     margin-right: 0.5em;
 }
+hr.custom-line {
+    border: 0;
+    height: 5px; /* Adjust thickness */
+    background-color: #000; /* Adjust color */
+    margin: 20px 0;
+}
