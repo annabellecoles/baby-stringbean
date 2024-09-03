@@ -106,7 +106,7 @@ Sample JSON file:
       "bella_vista_output_folder": "/path/to/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs/bellavista_outs",
       "create_bellavista_inputs": true,
 
-      "parameters": {
+      "visualization_parameters": {
           "plot_image": true,
           "plot_transcripts": true,
           "plot_allgenes": true,
