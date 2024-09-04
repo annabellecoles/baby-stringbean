@@ -30,10 +30,6 @@ To visualize data in Bella Vista, you need a JSON configuration file containing 
   } 
 ```
 
-Each technoloy has technology-specific input file requirements. Technology-specific input file parameters and example JSON files can be found in the [Xenium](bellavista_tutorials/10x_xenium), [MERSCOPE](bellavista_tutorials/vizgen_merscope), [MERlin](bellavista_tutorials/merfish_merlin) tutorials
-
-Example JSON files can also be found in the [BellaVista/sample_json](https://github.com/pkosurilab/BellaVista) repository
-
 ## General parameters
 
 **system**: *string*
@@ -79,22 +75,70 @@ Example JSON files can also be found in the [BellaVista/sample_json](https://git
 **rotate_angle**: *integer, default=None*
 : Value in the range [0, 360]. Angle in degrees by which to rotate the data
 
-<br><br>
+## Input file parameters
+
+Each technoloy has technology-specific input file requirements. Technology-specific input file parameters and example JSON files can be found in the [Xenium](bellavista_tutorials/10x_xenium), [MERSCOPE](bellavista_tutorials/vizgen_merscope), [MERlin](bellavista_tutorials/merfish_merlin) tutorials. 
+
+
+## Getting Started
+
+Step-by-step tutorials for each technology:
+
+::::{grid} 2
+
+:::{grid-item-card}  10x Genomics Xenium
+:width: auto
+:link: bellavista_tutorials/10x_xenium.html
+
+Step-by-step guide to visualizing Xenium datasets
+:::
+
+:::{grid-item-card}  Vizgen MERSCOPE
+:width: auto
+:link: bellavista_tutorials/vizgen_merscope.html
+
+Step-by-step guide to visualizing MERSCOPE datasets
+:::
+
+:::{grid-item-card}  MERFISH - MERlin
+:width: auto
+:link: bellavista_tutorials/merfish_merlin.html
+
+Step-by-step guide to visualizing MERFISH datasets processed via the MERlin pipeline
+:::
+::::
+<br>
 <hr class="custom-line">
 
-## Getting Started (with sample data)
+### Getting Started (with sample data)
 
-Download sample data: [Xenium mouse brain dataset (replicate 3)](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)
-- Copy and save contents below into a new JSON file called `xenium_sample.json`
-- Replace the paths in `data_folder` and `bella_vista_output_folder` parameters
+Below is a short tutorial for loading Bella Vista with sample Xenium data. This tutorial can also be found in the [Xenium tutorial page](bellavista_tutorials/10x_xenium)
 
+#### Sample dataset & JSON
+
+Download sample data: Xenium mouse brain dataset (replicate 3)
+[https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)
+
+To download the dataset, 10x Genomics may ask you to fill out a questionnaire.
+
+<img src="https://github.com/pkosurilab/BellaVista/blob/main/images/xenium_testdata_location.png?raw=true" alt="Xenium sample data website location" width="600" />
+
+#### Load Bella Vista
+
+1. Download the sample JSON file from the GitHub repository: [BellaVista/sample_json/xenium_sample.json](https://github.com/pkosurilab/BellaVista/tree/main/sample_json/xenium_sample.json)
+2. Replace the paths in `data_folder` and `bella_vista_output_folder`
+<br><br>
+
+**xenium_sample.json**
 ```{eval-rst}
+
 .. code-block:: JSON
+  :emphasize-lines: 3-4
 
   { 
       "system": "xenium", 
-      "data_folder": "/path/to/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs",
-      "bella_vista_output_folder": "/path/to/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs/bellavista_outs",
+      "data_folder": "/path/to/xenium_brain_rep3",
+      "bella_vista_output_folder": "/path/to/xenium_brain_rep3/bellavista_outs",
       "create_bellavista_inputs": true,
 
       "visualization_parameters": {
@@ -118,29 +162,50 @@ Download sample data: [Xenium mouse brain dataset (replicate 3)](https://www.10x
   }
 ```
 
-Run Bella Vista with Xenium sample data:
+3. In the terminal, run Bella Vista with the Xenium sample JSON:
 ```{eval-rst}
 .. code-block:: python
 
   bellavista xenium_sample.json
 ```
-**Note**: It will take a few minutes to create the required data files.\
-The terminal will print updates & have progress bars for time consuming steps.
+
+```{eval-rst}
+.. note::
+
+    It will take a few minutes to create the required data files. The terminal will print updates & have progress bars for time consuming steps.
+```
+
+```{eval-rst}
+.. warning::
+
+    If the program crashes or encounters a memory-related error, you may need to visualize a smaller subset of the data.
+    For more information, see `What should I do if the program runs out of memory? <faq.html#reducing-memory-requirements>`_ in the FAQ.
+```
+
+{ref}
 
 Once successfully loaded, you should see the message `Data Loaded!` in the terminal.\
 A napari window should appear displaying the data similar to the image below:
 
-<img src="https://github.com/pkosurilab/BellaVista/blob/pypi-documentation/images/xenium_brain_position0_allgenes.png?raw=true" alt="Initial napari load page" width="600" />
+<img alt="initial load window" src="_static/tutorials/xenium/xenium_brain_position_0.png">
+
+```{eval-rst}
+.. note::
+
+    Gene colors are assigned randomly every time Bella Vista is launched. So, the gene colors displayed in your window will be different from the image above. See :ref:`useful-napari-commands` in the FAQ for commands to configure gene colors and other customizable visualization options. 
+    
+    To reproduce the same colors every time you launch Bella Vista, see :ref:`creating-figures` in the Figure Guide.
+```
 
 Now, you can interactively move around the napari canvas to explore the data!\
 Try zooming in & out, toggling layers on & off to see different spatial patterns:
 
-<img src="https://github.com/pkosurilab/BellaVista/blob/pypi-documentation/images/xenium_brain_position0_selectgenes.png?raw=true" alt="Zoom out of napari" width="600" /> 
+<div style="position: relative; width: 100%; display: flex; justify-content: space-between; align-items: flex-end;">
+  <img src="_static/tutorials/xenium/xenium_brain_position_0_select.png" alt="zoom out screenshot" style="width: 49%;">
+  <img src="_static/tutorials/xenium/xenium_brain_position_1.png" alt="zoom in screenshot" style="width: 49%">
+</div>
 
-<img src="https://github.com/pkosurilab/BellaVista/blob/pypi-documentation/images/xenium_brain_position1.png?raw=true" alt="Zoom out of napari with selected genes visible" width="600" />
-
-<!-- 
-The example JSON file can also be found on the Bella Vista GitHub repository: [https://github.com/pkosurilab/BellaVista/tree/main/sample_json/xenium_sample.json](https://github.com/pkosurilab/BellaVista/tree/main/sample_json/xenium_sample.json) -->
+For an exact reproduction of the two screenshots above, please refer to the figure guide: [Reproducing sample figures (Xenium)](./figure_guide.md#Reproducing-sample-figures-(Xenium))
 
 
 <div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">

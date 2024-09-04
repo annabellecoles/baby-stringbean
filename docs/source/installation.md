@@ -40,6 +40,7 @@ The following instructions require that you have [Anaconda](https://www.anaconda
 ```{eval-rst}
 .. code-block:: python
 
+    conda install git
     git clone https://github.com/pkosurilab/BellaVista
     pip install -e BellaVista
 ```

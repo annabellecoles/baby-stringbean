@@ -58,7 +58,7 @@ In order to visualize your MERSCOPE dataset in Bella Vista, you will need to cre
 ```{eval-rst}
 .. note::
 
-  All input paths *must* be relative paths to :samp:`data_folder`
+  All input file paths **must** be relative paths to :samp:`data_folder`
   
     If you are missing some input files, remove those input file parameters from the JSON file. Bella Vista will skip the visualization of these data.
 
@@ -73,6 +73,22 @@ In order to visualize your MERSCOPE dataset in Bella Vista, you will need to cre
             }
 
 ```
+
+## General parameters
+
+**system**: *string*
+: Value: `"MERSCOPE"`\
+ The input is not case-sensitive, so values "merscope", "Merscope", and "MERSCOPE" are treated equivalently
+
+**data_folder**: *string*
+: Path to folder containing dataset output files
+  
+**bella_vista_output_folder**: *string*
+: Path to save & load Bella Vista visualization files
+  
+**create_bellavista_inputs**: *boolean, default=true*
+: Create required visualization files for Bella Vista. Must be `true` when first loading data.\
+ Can be `false` in subsequent runs (since files have already been created)
 
 ## Visualization parameters
 
@@ -108,7 +124,7 @@ In order to visualize your MERSCOPE dataset in Bella Vista, you will need to cre
 
 ## Sample dataset & JSON
 
-Download sample data: MERSCOPE mouse brain dataset (Slice 1, Replicate 1)
+Download sample data: MERSCOPE mouse brain dataset (slice 1, replicate 1)
 [https://info.vizgen.com/mouse-brain-map](https://info.vizgen.com/mouse-brain-map)
 
 To download the dataset, Vizgen may ask you to fill out a questionnaire.
@@ -123,7 +139,7 @@ To download the dataset, Vizgen may ask you to fill out a questionnaire.
 For this example, you only need to download:
 - `detected_transcripts_S1R1.csv`
 - `cell_boundaries/`
-- `mosaic_DAPI_z3.tif` found inside `images/`
+- `mosaic_DAPI_z3.tif` & `micron_to_mosaic_pixel_transform.csv` found inside `images/`
 
 <p align="center">
   <picture>
@@ -136,47 +152,93 @@ For this example, you only need to download:
 .. note::
 
   To download the `cell_boundaries` folder, you may need to use gsutil (Google Cloud Console will prompt you if this is the case).
-  
+
   Here is some information on how to use gsutil: https://cloud.google.com/storage/docs/gsutil_install
 
+  When 
+
+  Make sure 
 
 ```
 
+For this example, we will visualize a subset of the genes which are listed in the visualization parameter `selected_genes` to speed up computation. If you wish to visualize all genes, set the visualization parameter `plot_allgenes` to `true`.
+
 ### Load Bella Vista
 
-- Copy and save contents below into a new JSON file called `merscope_sample.json`
-- The sample JSON file can also be downloaded from the Bella Vista GitHub repository: [https://github.com/pkosurilab/BellaVista/tree/main/sample_json/merscope_sample.json](https://github.com/pkosurilab/BellaVista/tree/main/sample_json/merscope_sample.json)
-- Replace the paths in the `data_folder` and `bella_vista_output_folder` properties
+1. Download the sample JSON file from the GitHub repository: [BellaVista/sample_json/merscope_sample.json](https://github.com/pkosurilab/BellaVista/tree/main/sample_json/merscope_sample.json)
+2. Replace the paths in the `data_folder` and `bella_vista_output_folder` properties
+<br><br>
 
+**merscope_sample.json**
 ```{eval-rst}
 .. code-block:: JSON
+  :emphasize-lines: 3-4
 
   { 
       "system": "merscope", 
-      "data_folder": "/path/to/Vizgen_BrainReceptorShowcase_Slice1_Replicate1",
-      "bella_vista_output_folder": "/path/to/Vizgen_BrainReceptorShowcase_Slice1_Replicate1/bellavista_outs",
+      "data_folder": "/path/to/vizgen_brain_s1r1",
+      "bella_vista_output_folder": "/path/to/vizgen_brain_s1r1/bellavista_outs",
       "create_bellavista_inputs": true,
 
       "visualization_parameters": { 
           "plot_image": true,
           "plot_transcripts": true,
           "plot_allgenes": false,
-          "selected_genes": ["Fgfr2","Tmem108","Glp2r","Slc47a1","Tacr1","Th","Ntsr1",
-                              "Sstr3","S1pr3","Sstr1","Ptgfr","Qrfpr","Gpr101","Drd5","Chat"],
+          "selected_genes": ["Fgfr2","Tmem108","Glp2r","Slc47a1","Tacr1","Th",
+                              "Ntsr1","Sstr3","S1pr3","Sstr1","Ptgfr","Qrfpr",
+                              "Gpr101","Drd5","Chat"],
           "plot_cell_seg": true,
           "transcript_point_size": 0.75,
           "contrast_limits": [0, 26000]
       },
       
       "input_files": {
-          "um_to_px_transform": "datasets_mouse_brain_map_BrainReceptorShowcase_Slice1_Replicate1_images_micron_to_mosaic_pixel_transform.csv",
+          "um_to_px_transform": "micron_to_mosaic_pixel_transform.csv",
           "images":  "mosaic_DAPI_z3.tif",
           "z_plane": 3,
-          "transcript_filename": "datasets_mouse_brain_map_BrainReceptorShowcase_Slice1_Replicate1_detected_transcripts_S1R1.csv",
+          "transcript_filename": "detected_transcripts_S1R1.csv",
           "cell_segmentation": "cell_boundaries"
       }
   }
 ```
+
+3. In the terminal, run Bella Vista with the MERSCOPE sample JSON:
+```{eval-rst}
+.. code-block:: python
+
+  bellavista merscope_sample.json
+```
+
+```{eval-rst}
+.. note::
+
+    It will take a few minutes to create the required data files. The terminal will print updates & have progress bars for time consuming steps.
+```
+
+Using this JSON file, the displayed output should look similar to this: 
+
+<img src="../_static/tutorials/merscope/vizgen_brain_position0.png" alt="Vizgen brain initial view" />
+
+```{eval-rst}
+.. note::
+
+    Gene colors are assigned randomly every time Bella Vista is launched. So, the gene colors displayed in your window will be different from the image above. See :ref:`useful-napari-commands` in the FAQ for commands to configure gene colors and other customizable visualization options. 
+    
+    To reproduce the same colors every time you launch Bella Vista, see :ref:`creating-figures` in the Figure Guide.
+```
+
+Now, you can interactively move around the napari canvas to explore the data!\
+Try zooming in & out, toggling layers on & off to see different spatial patterns:
+
+## Visualizing your MERSCOPE dataset
+
+Steps to visualize your dataset:
+
+1. Create and configure a JSON file for your dataset, ensuring all input file paths are relative to `data_folder`. Once this JSON file has been created, it can be reused every time you launch Bella Vista for this dataset.
+2. Run Bella Vista with your configured JSON
+3. Explore your data!
+
+If you encounter any issues, please check the [FAQ](../faq.md#frequently-asked-questions). If you're experiencing issues not addressed in the FAQ, please check the open issues or [open a new issue](https://github.com/pkosurilab/BellaVista/issues)in our GitHub repository. You can also leave any feedback here!
 
 
 <div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">

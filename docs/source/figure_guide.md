@@ -23,8 +23,8 @@ To download the dataset, 10x Genomics may ask you to fill out a questionnaire.
 <br/><br/>
 
 
-The configuration files required to reproduce viewer configuration can be found in the dropbox:\
- https://www.dropbox.com/scl/fo/5ae35p7nbkct0e0mi92vz/AD38rhAb4M6L36putA4qREU?rlkey=hjnf94fomm5k2rfyzyi7b58u3&st=1tylmuj6&dl=0
+Configuration files can be found in the [dropbox here](https://www.dropbox.com/scl/fo/5ae35p7nbkct0e0mi92vz/AD38rhAb4M6L36putA4qREU?rlkey=hjnf94fomm5k2rfyzyi7b58u3)
+
 
  ```{eval-rst}
 .. note::
@@ -40,11 +40,12 @@ The configuration files required to reproduce viewer configuration can be found 
 
 ```{eval-rst}
 .. code-block:: JSON
+  :emphasize-lines: 3-4
 
   { 
     "system": "xenium", 
-    "data_folder": "/Users/kosuri_lab/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs",
-    "bella_vista_output_folder": "/Users/kosuri_lab/Xenium_V1_FF_Mouse_Brain_MultiSection_3_outs/bellavista_outs",
+    "data_folder": "/path/to/xenium_brain_rep3",
+    "bella_vista_output_folder": "/path/to/xenium_brain_rep3/bellavista_outs",
     "create_bellavista_inputs": true,
 
     "visualization_parameters": {
@@ -52,8 +53,9 @@ The configuration files required to reproduce viewer configuration can be found 
         "plot_transcripts": true,
         "plot_allgenes": false,
         "selected_genes": ["Igfbp5","Igf2","Gjc3","Gad2","Epha4","Dner","Dkk3",
-                            "Col1a1","Cntnap4","Clmn","Ccn2","Cbln4","Cbln1","Car4",
-                            "Calb2","Calb1","Cacna2d2","Cabp7","Bcl11b","2010300C02Rik"],
+                            "Col1a1","Cntnap4","Clmn","Ccn2","Cbln4","Cbln1",
+                            "Car4","Calb2","Calb1","Cacna2d2","Cabp7","Bcl11b",
+                            "2010300C02Rik"],
         "transcript_point_size": 0.75,
         "contrast_limits": [0, 5000],
         "rotate_angle": 180
@@ -64,7 +66,7 @@ The configuration files required to reproduce viewer configuration can be found 
         "z_plane": 5,
         "transcript_filename": "transcripts.parquet"
     }
-}
+  }
 ```
 
 In the terminal, run Bella Vista with the Xenium sample JSON:
@@ -242,8 +244,10 @@ The napari console can be found in the bottom left of the gui:
 <br><br>
 <hr class="custom-line">
 
+(creating-figures)=
 ## Creating your own figures!
 
+(useful-figure-commands)=
 ### Useful commands
 
 Screenshot current canvas:

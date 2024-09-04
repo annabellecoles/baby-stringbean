@@ -3,7 +3,18 @@
 ```
 # {octicon}`question` FAQ
 
-:::{dropdown} I can't see my image
+Here, you will find useful napari commands and answers to frequently asked questions. If you have suggestions for additional commands that others might find helpful or if you're encountering issues not covered in the FAQ, please check the open issues or [open a new issue](https://github.com/pkosurilab/BellaVista/issues) in the GitHub repository.
+
+(useful-napari-commands)=
+## Useful napari tools & commands
+
+
+
+
+
+(faq)=
+## Frequently Asked Questions
+:::{dropdown} I cannot see my image
 If your image has loaded, but appears oversaturated (white), you may need to change the contrast limits of the image.
 <br><br>
 
@@ -36,5 +47,33 @@ If your image has loaded, but appears oversaturated (white), you may need to cha
 [Visualization parameter documentation](./get_started.md#visualization-parameters)
 :::
 
-If you are encountering any other issues, please check open issues or [open a new issue](https://github.com/pkosurilab/BellaVista/issues) in the GitHub repository.
+<!-- <a id="reducing-memory-requirements"></a>
 
+<!-- ## Reducing Memory Requirements -->
+
+<!-- (test)=
+
+:::{dropdown} What should I do if the program runs out of memory?
+
+:::
+
+.. _reducing_memory_requirements:
+
+:::{dropdown} Reducing Memory Requirements
+:name: test
+If the program crashes or encounters a memory-related error, you may need to visualize a smaller subset of the data.
+For more information, see the FAQ section.
+
+:::
+
+{ref}`test` -->
+
+
+<a id="reducing-memory-requirements"></a>
+
+:::{dropdown} What should I do if the program runs out of memory?
+
+If the program crashes or encounters a memory-related error, you may need to visualize a smaller subset of the data.
+For more information, see the FAQ section.
+
+:::
