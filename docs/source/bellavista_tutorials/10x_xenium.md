@@ -20,6 +20,7 @@ In order to visualize your Xenium dataset in Bella Vista, you will need to creat
             "plot_image": true,
             "plot_transcripts": true,
             "plot_allgenes": true,
+            "genes_visible_on_startup": false,
             "plot_cell_seg": true
         },
 
@@ -37,19 +38,20 @@ In order to visualize your Xenium dataset in Bella Vista, you will need to creat
 
 
 **transcript_filename**: *string*
-: relative path to a Parquet or CSV file containing transcript spatial locations. If None, no transcripts will be prepared
+: relative path to a Parquet or CSV file containing transcript spatial locations. If None, no transcripts will be processed
 
 **images**: *string or 1D array of strings*
-: relative path to image file(s). Must be an OME-TIFF or TIFF file. If None, no images will be displayed
+: relative path to image file(s). Must be an OME-TIFF or TIFF file. If None, no images will be processed
+> When visualizing a single image, provide the file path as a string. For multiple images, pass them as a list of filenames. For example, use "DAPI.tif" for a single image or ["DAPI.tif", "PolyT.tif"] for multiple images
 
 **z_plane**: *integer, default=0*
-: z-plane of image to be used
+: z-plane of image to be visualize. If None, the first z-plane will be used
 
 **cell_segmentation**: *string*
-: relative path to Parquet or Zarr file containing cell segmentations. If None, no cell segmentations will be prepared
+: relative path to Parquet or Zarr file containing cell segmentations. If None, no cell segmentations will be processed
 
 **nuclear_segmentation**: *string*
-: relative path to Parquet or Zarr file containing nuclear segmentations. If None, no nuclear segmentations will be prepared
+: relative path to Parquet or Zarr file containing nuclear segmentations. If None, no nuclear segmentations will be processed
 
 ```{eval-rst}
 .. important::
@@ -57,6 +59,7 @@ In order to visualize your Xenium dataset in Bella Vista, you will need to creat
   All input file paths **must** be relative paths to :samp:`data_folder`
 
 ```
+
 ```{eval-rst}
 .. note::
   If you are missing some input files, remove those input file parameters from the JSON file. Bella Vista will skip the visualization of these data.
@@ -88,40 +91,75 @@ In order to visualize your Xenium dataset in Bella Vista, you will need to creat
 **create_bellavista_inputs**: *boolean, default=true*
 : Create required visualization files for Bella Vista. Must be `true` when first loading data.\
  Can be `false` in subsequent runs (since files have already been created)
+ > If set to `true` and the visualization files have already been created from a previous run, Bella Vista will skip the preparation of existing visualization files and only create files that do not exist.
 
 ## Visualization parameters
 
-**plot_image**: *boolean, default=False*
-: Display image(s). Default value is False
+**plot_image**: *boolean, default=false*
+: Display image(s)
 
-**plot_transcripts**: *boolean, default=False*
+**plot_transcripts**: *boolean, default=false*
 : Plot gene transcript spatial coordinates
 
-**plot_allgenes**: *boolean, default=True*
-: Plot transcripts for all gene IDs. If False, only gene IDs in `selected_genes` will be plotted
+**plot_allgenes**: *boolean, default=true*
+: Plot transcripts for all gene IDs. If false, only gene IDs in `selected_genes` will be plotted
+
+**genes_visible_on_startup**: *boolean, default=false*
+: Controls the visibility of all gene layers at startup. If set to false, the gene layers will be hidden
+> Setting this option to false improves navigation performance. Gene layers can be shown later using the toggle visibility feature.
 
 **selected_genes**: *1D array of strings, default=None*
-: Plot transcripts only for specified gene IDs
+: Only plot transcripts for gene IDs specified in list. If None, all genes will be plotted by default
 
-**plot_cell_seg**: *boolean, default=False*
+**plot_cell_seg**: *boolean, default=false*
 : Plot cell segmentation
 
-**plot_nuclear_seg**: *boolean, default=False*
+**plot_nuclear_seg**: *boolean, default=false*
 : Plot nuclear segmentation
 
 **transcript_point_size**: *float, default=1.0*
-: Point size for plotting transcript coordinates
+: Point size for individual transcript coordinates
 
 **contrast_limits**: *tuple array of integers, default=None*
 : Values in the range [0, 65535]. Contrast limits for displayed image(s)
 
-**rotate_angle**: *integer, default=None*
+**rotate_angle**: *integer, default=0*
 : Value in the range [0, 360]. Angle in degrees by which to rotate the data
 
-<br><br>
-<hr class="custom-line">
+## Loading Bella Vista
 
-## Sample dataset & JSON
+Once your JSON is correctly configured for your dataset, you can run Bella Vista in the terminal:
+
+  - Replace `my_dataset.json` with the filename of the JSON you created. The JSON file argument should contain the file path to your JSON file.
+```{eval-rst}
+.. code-block:: python
+
+  bellavista my_dataset.json
+```
+```{eval-rst}
+.. note::
+
+    It will take a few minutes to create the required data files. The terminal will print updates & have progress bars for time consuming steps.
+```
+
+Once loaded, you should see a napari window displaying your data. Now, you can interactively move around the napari canvas to explore the data. Try zooming in & out, toggling layers on & off to see different spatial patterns! 
+
+```{eval-rst}
+.. tip::
+
+    To visualize a single layer, and hide all other layers, :samp:`Option/Alt-click` on the visibility button (the eye, to the left of the layer name). Check out :ref:`helpful-napari-tips` in the FAQ for more tips!
+```
+
+Refer to the tutorial below for a step-by-step guide on running Bella Vista with a sample dataset and JSON.
+
+If you encounter any issues, please check the [FAQ](../faq.md#frequently-asked-questions). If you're experiencing issues not addressed in the FAQ, please check the open issues or [open a new issue](https://github.com/pkosurilab/BellaVista/issues)in our GitHub repository. You can also leave any feedback here!
+
+<br>
+
+## Getting Started (with sample data)
+
+
+### Download sample data
 
 Download sample data: Xenium mouse brain dataset (replicate 3)
 [https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-replicates-1-standard)
@@ -152,10 +190,11 @@ To download the dataset, 10x Genomics may ask you to fill out a questionnaire.
           "plot_image": true,
           "plot_transcripts": true,
           "plot_allgenes": true,
+          "genes_visible_on_startup": false,
           "plot_cell_seg": false,
           "plot_nuclear_seg": false,
           "transcript_point_size": 0.75,
-          "contrast_limits": [600, 3200],
+          "contrast_limits": [0, 5000],
           "rotate_angle": 180
       },
 
@@ -170,6 +209,7 @@ To download the dataset, 10x Genomics may ask you to fill out a questionnaire.
 ```
 
 3. In the terminal, run Bella Vista with the Xenium sample JSON:
+    - The JSON file argument should contain the file path to the JSON file.
 ```{eval-rst}
 .. code-block:: python
 
@@ -182,18 +222,17 @@ To download the dataset, 10x Genomics may ask you to fill out a questionnaire.
     It will take a few minutes to create the required data files. The terminal will print updates & have progress bars for time consuming steps.
 ```
 
-Once successfully loaded, you should see the message `Data Loaded!` in the terminal.\
-A napari window should appear displaying the data similar to the image below:
-
-<img alt="initial load window" src="../_static/tutorials/xenium/xenium_brain_position_0.png">
-
 ```{eval-rst}
 .. note::
 
-    Gene colors are assigned randomly every time Bella Vista is launched. So, the gene colors displayed in your window will be different from the image above. See :ref:`useful-napari-commands` in the FAQ for commands to configure gene colors and other customizable visualization options. 
-    
-    To reproduce the same colors every time you launch Bella Vista, see :ref:`creating-figures` in the Figure Guide.
+    This is a large dataset, so if the program crashes or encounters a memory-related error, you may need to visualize a smaller subset of the data.
+    For more information, see `What should I do if the program crashes? <faq.html#reducing-memory-requirements>`_ in the FAQ.
 ```
+
+Once successfully loaded, you should see the message `Data Loaded!` in the terminal.\
+A napari window should appear displaying the data similar to the image below:
+
+<img alt="initial load window" src="../_static/tutorials/xenium/xenium_initial.png">
 
 Now, you can interactively move around the napari canvas to explore the data!\
 Try zooming in & out, toggling layers on & off to see different spatial patterns:
@@ -203,19 +242,22 @@ Try zooming in & out, toggling layers on & off to see different spatial patterns
   <img src="../_static/tutorials/xenium/xenium_brain_position_1.png" alt="zoom in screenshot" style="width: 49%">
 </div>
 
+```{eval-rst}
+.. tip::
+
+    To visualize a single layer, and hide all other layers, :samp:`Option/Alt-click` on the visibility button (the eye, to the left of the layer name). Check out :ref:`helpful-napari-tips` in the FAQ for more tips!
+```
+
+```{eval-rst}
+.. note::
+
+    Gene colors are assigned randomly every time Bella Vista is launched. So, the gene colors displayed in your window will be different from the image above. See :ref:`helpful-napari-tips` in the FAQ for commands to configure gene colors and other customizable visualization options. 
+    
+    To reproduce the same colors every time you launch Bella Vista, see :ref:`creating-figures` in the Figure Guide.
+```
 For an exact reproduction of the two screenshots above, please refer to the figure guide: [Reproducing sample figures (Xenium)](../figure_guide.md#Reproducing-sample-figures-(Xenium))
 
-## Visualizing your Xenium dataset
-
-Steps to visualize your dataset:
-
-1. Create and configure a JSON file for your dataset, ensuring all input file paths are relative to `data_folder`. Once this JSON file has been created, it can be reused every time you launch Bella Vista for this dataset.
-2. Run Bella Vista with your configured JSON
-3. Explore your data!
-
 If you encounter any issues, please check the [FAQ](../faq.md#frequently-asked-questions). If you're experiencing issues not addressed in the FAQ, please check the open issues or [open a new issue](https://github.com/pkosurilab/BellaVista/issues)in our GitHub repository. You can also leave any feedback here!
-
-
 
 <div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
     <div class="mr-auto">

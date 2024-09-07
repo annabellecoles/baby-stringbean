@@ -1,14 +1,6 @@
 MERFISH - MERlin
 ================
 
-```{eval-rst}
-.. note::
-
-   WORK IN PROGRESS...
-   FIX EXAMPLE JSON STUFF
-```
-
-
 This tutorial is for visualizing datasets from custom (home-built) MERFISH setups processed via the [MERlin](https://github.com/emanuega/MERlin) pipeline. Our aim was to make the Bella Vista package as lightweight as possible and make it easy for users to customize the code for custom setups, analyses, and needs. Check out the [napari website](https://napari.org/) for further documentation and features you can implement!
 
 ## MERlin pipeline outputs
@@ -41,7 +33,7 @@ Standard MERlin outputs folder organization:
 
 From these outputs, it is possible to visualize tissue images, spatial transcript locations, and cell/nuclear segmentation boundaries.
 
-To visualize tissue images, individual field-of-views (FOVs) must be stitched together. FOV images can be found in the `FiducialCorrelationWarp/Images` folder. Currently, Bella Vista does not include a stitching pipeline. Stitching can be accomplished using image processing utilizing python packages such as [NumPy](https://numpy.org/) and [Dask](https://www.dask.org/) or softwares such as [BigStitcher](https://imagej.net/plugins/bigstitcher/). The output stitched image must be a TIFF image, with individually stitched images for each channel you wish to visualize. The stitched images should be saved in the `%ANALYSIS_HOME%` directory.
+To visualize tissue images, individual field-of-views (FOVs) must be stitched together. FOV images can be found in `FiducialCorrelationWarp/Images` in the MERlin output folder. Currently, Bella Vista does not include a stitching pipeline. Stitching can be accomplished using image processing utilizing python packages such as [NumPy](https://numpy.org/) and [Dask](https://www.dask.org/) or softwares such as [BigStitcher](https://imagej.net/plugins/bigstitcher/). The output stitched image must be a TIFF image, with individually stitched images for each channel you wish to visualize. The stitched images should be saved in the `%ANALYSIS_HOME%` directory.
 
 Transcript locations and cell/nuclear segmentations exported by MERlin can be processed directly by Bella Vista.
 
@@ -62,6 +54,7 @@ In order to visualize your MERFISH dataset in Bella Vista, you will need to crea
             "plot_image": true,
             "plot_transcripts": true,
             "plot_allgenes": true,
+            "genes_visible_on_startup": false,
             "plot_cell_seg": true
         },
 
@@ -80,47 +73,51 @@ In order to visualize your MERFISH dataset in Bella Vista, you will need to crea
 ## Input file parameters (MERlin)
 
 **transcript_filename**: *string*
-: relative path to CSV file containing decoded gene transcript spatial coordinates. If None, no transcripts will be plotted
+: relative path to CSV file containing decoded gene transcript spatial coordinates. If None, no transcripts will be processed
 
 **codebook**: *string*
-: relative path to CSV containing map from `barcode_id` to gene ID. This is *required* to plot transcripts. If None, no transcripts will be plotted
+: relative path to CSV containing map from `barcode_id` to gene ID. This is *required* to plot transcripts. If None, no transcripts will be processed
 
 **images**: *string or 1D array of strings, default=None*
-: relative path to stitched image(s) to display. If None, no images will be displayed. Images must be an OME-TIFF or TIFF file. If an image file is 3D (z,y,x) format, the image used will be from the `z_plane` index. If the specified `z_plane` does not exist, the first image in the stack will be used 
+: relative path to stitched image file(s). Must be a TIFF file. If None, no images will be processed
+  > When visualizing a single image, provide the file path as a string. For multiple images, pass them as a list of filenames. For example, use "DAPI.tif" for a single image or ["DAPI.tif", "PolyT.tif"] for multiple images
 
 **microscope_parameters**: *string*
-: relative path to JSON file containing microscope micron to pixel transform. This is *required* if displaying images. If None, no images will be displayed
+: relative path to JSON file containing microscope micron to pixel transform. This is *required* if displaying images. If None, no images will be processed
 
 **positions_list**: *string*
-: relative path to CSV file containing micron microscope positions for each FOV. This is *required* if displaying images. If None, no images will be displayed
+: relative path to CSV file containing micron microscope positions for each FOV. This is *required* if displaying images. If None, no images will be processed
 
 **z_plane**: *integer, default=0*
-: z-plane to plot segmented cell/nuclear boundaries from
+: z-plane of segmentations to plot. We suggest this match the z-plane of the image you are visualizing. If None, the segmentations from the first z-plane will be processed
 
 **cell_segmentation**: *string, default=None*
-: relative path to folder containing HDF5 cell segmentation boundaries. If None, no boundaries will be plotted
+: relative path to folder containing HDF5 cell segmentation boundaries. If None, no cell segmentations will be processed
 
 **nuclear_segmentation**: *string, default=None*
-: relative path to folder containing HDF5 nuclear segmentation boundaries. If None, no boundaries will be plotted
+: relative path to folder containing HDF5 nuclear segmentation boundaries. If None, no nuclear segmentations will be processed
 
 ```{eval-rst}
-.. note::
+.. important::
 
   All input file paths **must** be relative paths to :samp:`data_folder`
-  
-    If you are missing some input files, remove those input file parameters from the JSON file. Bella Vista will skip the visualization of these data.
 
-    For example, if you do not have cell segmentations, the input file parameters in your JSON file might look like this: 
+```
+```{eval-rst}
+.. note::
+  If you are missing some input files, remove those input file parameters from the JSON file. Bella Vista will skip the preparation of visualization files for these data.
 
-    .. code-block:: JSON
+  For example, if you do not have cell segmentations, the input file parameters in your JSON file might look like this: 
 
-            "input_files": {
-                "transcript_filename": "barcodes.csv",
-                "codebook": "codebook.csv",
-                "images": "DAPI.tif",
-                "microscope_parameters": "microscope_parameters.json",
-                "positions_list": "positions.csv"
-            }
+  .. code-block:: JSON
+
+        "input_files": {
+            "transcript_filename": "barcodes.csv",
+            "codebook": "codebook.csv",
+            "images": "DAPI.tif",
+            "microscope_parameters": "microscope_parameters.json",
+            "positions_list": "positions.csv"
+        }
 ```
 ## General parameters
 
@@ -137,40 +134,74 @@ In order to visualize your MERFISH dataset in Bella Vista, you will need to crea
 **create_bellavista_inputs**: *boolean, default=true*
 : Create required visualization files for Bella Vista. Must be `true` when first loading data.\
  Can be `false` in subsequent runs (since files have already been created)
+ > If set to `true` and the visualization files have already been created from a previous run, Bella Vista will skip the preparation of existing visualization files and only create files that do not exist.
 
 ## Visualization parameters
 
-**plot_image**: *boolean, default=False*
-: Display image(s). Default value is False
+**plot_image**: *boolean, default=false*
+: Display image(s)
 
-**plot_transcripts**: *boolean, default=False*
+**plot_transcripts**: *boolean, default=false*
 : Plot gene transcript spatial coordinates
 
-**plot_allgenes**: *boolean, default=True*
-: Plot transcripts for all gene IDs. If False, only gene IDs in `selected_genes` will be plotted
+**plot_allgenes**: *boolean, default=true*
+: Plot transcripts for all gene IDs. If false, only gene IDs in `selected_genes` will be plotted
+
+**genes_visible_on_startup**: *boolean, default=false*
+: Controls the visibility of all gene layers at startup. If set to false, the gene layers will be hidden
+> Setting this option to false improves navigation performance. Gene layers can be shown later using the toggle visibility feature.
 
 **selected_genes**: *1D array of strings, default=None*
-: Plot transcripts only for specified gene IDs
+: Only plot transcripts for gene IDs specified in list. If None, all genes will be plotted by default
 
-**plot_cell_seg**: *boolean, default=False*
+**plot_cell_seg**: *boolean, default=false*
 : Plot cell segmentation
 
-**plot_nuclear_seg**: *boolean, default=False*
+**plot_nuclear_seg**: *boolean, default=false*
 : Plot nuclear segmentation
 
 **transcript_point_size**: *float, default=1.0*
-: Point size for plotting transcript coordinates
+: Point size for individual transcript coordinates
 
 **contrast_limits**: *tuple array of integers, default=None*
 : Values in the range [0, 65535]. Contrast limits for displayed image(s)
 
-**rotate_angle**: *integer, default=None*
+**rotate_angle**: *integer, default=0*
 : Value in the range [0, 360]. Angle in degrees by which to rotate the data
 
-<br><br>
-<hr class="custom-line">
+## Loading Bella Vista
 
-## Sample dataset & JSON
+Once your JSON is correctly configured for your dataset, you can run Bella Vista in the terminal:
+
+  - Replace `my_dataset.json` with the filename of the JSON you created. The JSON file argument should contain the file path to your JSON file.
+```{eval-rst}
+.. code-block:: python
+
+  bellavista my_dataset.json
+```
+```{eval-rst}
+.. note::
+
+    It will take a few minutes to create the required data files. The terminal will print updates & have progress bars for time consuming steps.
+```
+
+Once loaded, you should see a napari window displaying your data. Now, you can interactively move around the napari canvas to explore the data. Try zooming in & out, toggling layers on & off to see different spatial patterns! 
+
+```{eval-rst}
+.. tip::
+
+    To visualize a single layer, and hide all other layers, :samp:`Option/Alt-click` on the visibility button (the eye, to the left of the layer name). Check out :ref:`helpful-napari-tips` in the FAQ for more tips!
+```
+
+Refer to the tutorial below for a step-by-step guide on running Bella Vista with a sample dataset and JSON.
+
+If you encounter any issues, please check the [FAQ](../faq.md#frequently-asked-questions). If you're experiencing issues not addressed in the FAQ, please check the open issues or [open a new issue](https://github.com/pkosurilab/BellaVista/issues)in our GitHub repository. You can also leave any feedback here!
+
+<br>
+
+## Getting Started (with sample data)
+
+### Download sample data
 
 For this example, we processed the first FOV from a MERFISH sample dataset from the Brain Image Library [@Zhuang2020] via MERlin.
 
@@ -196,24 +227,26 @@ Download MERlin processed MERFISH mouse primary motor cortex dataset (mouse 2, s
       "parameters": { 
           "plot_image": true,
           "plot_transcripts": true,
-          "plot_allgenes": true
+          "plot_allgenes": true,
+          "genes_visible_on_startup": true,
           "plot_cell_seg": true,
           "transcript_point_size": 0.75
       },
 
       "input_files": {
-          "microscope_parameters": "microscope_parameters.json",
-          "codebook": "codebook.csv",
-          "positions_list": "positions.csv",
-          "images": "polyT_z3.tif",
-          "z_plane": 3,
           "transcript_filename": "ExportBarcodes/barcodes.csv",
+          "codebook": "codebook.csv",
+          "images": "polyT_z3.tif",
+          "microscope_parameters": "microscope_parameters.json",
+          "positions_list": "positions.csv",
+          "z_plane": 3,
           "cell_segmentation": "RefineCellDatabases/features"
       }
   }
 ```
 
 3. In the terminal, run Bella Vista with the MERlin sample JSON:
+    - The JSON file argument should contain the file path to the JSON file.
 
 ```{eval-rst}
 .. code-block:: python
@@ -243,20 +276,17 @@ Try zooming in & out, toggling gene and cell segmentation layers on & off:
 
 <img src="../_static/tutorials/merlin/merlin_subset.png" alt="MERlin brain layer subset" />
 
+```{eval-rst}
+.. tip::
+
+    To visualize a single layer, and hide all other layers, :samp:`Option/Alt-click` on the visibility button (the eye, to the left of the layer name). Check out :ref:`helpful-napari-tips` in the FAQ for more tips!
+```
+
+If you encounter any issues, please check the [FAQ](../faq.md#frequently-asked-questions). If you're experiencing issues not addressed in the FAQ, please check the open issues or [open a new issue](https://github.com/pkosurilab/BellaVista/issues)in our GitHub repository. You can also leave any feedback here!
+
 ### References
 
 [@Zhuang2020]: Zhuang, Xiaowei, Zhang, Meng. (2020). A molecularly defined and spatially resolved cell atlas of the mouse primary motor cortex. [ Collection / Dataset ]. Brain Image Library. https://doi.org/10.35077/g.21
-
-## Visualizing your MERFISH dataset
-
-Steps to visualize your dataset:
-
-1. Stitch FOVs into a single TIF image (optional)
-2. Create and configure a JSON file for your dataset, ensuring all input file paths are relative to `data_folder`. Once this JSON file has been created, it can be reused every time you launch Bella Vista for this dataset.
-3. Run Bella Vista with your configured JSON
-4. Explore your data!
-
-If you encounter any issues, please check the [FAQ](../faq.md#frequently-asked-questions). If you're experiencing issues not addressed in the FAQ, please check the open issues or [open a new issue](https://github.com/pkosurilab/BellaVista/issues)in our GitHub repository. You can also leave any feedback here!
 
 <div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
     <div class="mr-auto">

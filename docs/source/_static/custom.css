@@ -8,3 +8,11 @@ hr.custom-line {
     background-color: #000; /* Adjust color */
     margin: 20px 0;
 }
+
+hr.custom-line-light {
+    border: 0;
+    height: 1px; /* Adjust thickness */
+    background-color: #000; /* Adjust color */
+    margin: 20px 0;
+}
+

@@ -18,24 +18,12 @@ api
 <h1 style="margin-top: -1em">Bella Vista</h1>
 <h2  style="margin-top: 0.5em; margin-bottom: 0.8em">Open-Source Visualization for Imaging-Based Spatial Transcriptomics </h2>
 
+<img src="_static/bellavista_figure.png" alt="Bella Vista logo" align = "center"/> 
+
 Bella Vista is an open-source Python package developed for 10x Genomics Xenium, Vizgen MERSCOPE, and custom (home-built) MERFISH datasets utilizing [napari](https://napari.org/) for interactive data exploration. We developed Bella Vista to help the spatial transcriptomics community explore their data and create reproducible paper-ready figures.
 <br/><br/>
 If you find this tool useful in your research, please cite our [GitHub repository](https://github.com/pkosurilab/BellaVista)
 
-```{eval-rst}
-.. note::
-
-   This project & website is under active development.
-```
-
----
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" src="_static/bellavista_figure_v6_darkmode.png">
-    <img alt="Bella Vista logo." src="_static/bellavista_figure_v6.png">
-  </picture>
-</p>
-<p align="center">
 
 ::::{grid} 2
 :::{grid-item-card} {octicon}`terminal` Installation
@@ -62,28 +50,6 @@ If you find this tool useful in your research, please cite our [GitHub repositor
 :link: api.html
 :::
 ::::
-
-<!-- <style>
-    .sidebar {
-        width: 300px; /* Set your desired width */
-    }
-    .main-content {
-        margin-left: 320px; /* Adjust based on sidebar width + some margin */
-    }
-</style> -->
-
-<!-- <div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
-  {%- if next %}
-  <div class="ml-auto">
-    <a href="installation.html" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" style="text-decoration: none;">
-      Installation
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4">
-        <polyline points="9 18 15 12 9 6"></polyline>
-      </svg>
-    </a>
-  </div>
-  {%- endif %}
-</div> -->
 
 <div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
   <div class="ml-auto">

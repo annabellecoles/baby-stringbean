@@ -64,7 +64,8 @@ html_context = {"default_mode": "auto"}
 source_suffix = ['.md']
 extensions = [
     'myst_parser',
-    'sphinx_design'
+    'sphinx_design',
+    'sphinx_tabs.tabs'
 ]
 myst_enable_extensions = [
     "amsmath",
